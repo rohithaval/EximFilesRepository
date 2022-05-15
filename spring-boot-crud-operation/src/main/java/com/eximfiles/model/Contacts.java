@@ -1,5 +1,7 @@
 package com.eximfiles.model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -163,5 +165,31 @@ public class Contacts {
 	public void setFax(int fax) {
 		this.fax = fax;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(Telephone, cityName, contactId, contactNumber, contactType, country, emailID, fax,
+				firstName, lastName, officeAddress, officeContactNumber, officeEmailID, state, zipCode);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contacts other = (Contacts) obj;
+		return Telephone == other.Telephone && Objects.equals(cityName, other.cityName) && contactId == other.contactId
+				&& contactNumber == other.contactNumber && Objects.equals(contactType, other.contactType)
+				&& Objects.equals(country, other.country) && Objects.equals(emailID, other.emailID) && fax == other.fax
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName)
+				&& Objects.equals(officeAddress, other.officeAddress)
+				&& officeContactNumber == other.officeContactNumber
+				&& Objects.equals(officeEmailID, other.officeEmailID) && Objects.equals(state, other.state)
+				&& Objects.equals(zipCode, other.zipCode);
+	}
+	
 
 }
